@@ -1,0 +1,15 @@
+truncate teams, games restart identity;
+
+create a database named worldcup
+connect to your worldcup database
+create teams and games tables
+
+create table teams(team_id serial primary key, name varchar(20) unique not null);
+
+create table games(game_id serial primary key, year int not null, round varchar(20) not null, winner_id int not null, foreign key(winner_id) references teams(team_id), opponent_id int not null, foreign key(opponent_id) references teams(team_id), winner_goals int not null, opponent_goals int not null);
+
+When you run your insert_data.sh script, it should add each unique team to the teams table. There should be 24 rows
+
+When you run your insert_data.sh script, it should insert a row for each line in the games.csv file (other than the top line of the file). There should be 32 rows. Each row should have every column filled in with the appropriate info. Make sure to add the correct ID's from the teams table (you cannot hard-code the values)
+
+You should correctly complete the queries in the queries.sh file. Fill in each empty echo command to get the output of what is suggested with the command above it. Only use a single line like the first query. The output should match what is in the expected_output.txt file exactly, take note of the number of decimal places in some of the query results
